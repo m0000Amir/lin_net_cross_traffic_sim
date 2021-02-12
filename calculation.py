@@ -5,12 +5,13 @@ import json
 from cross_traffic import run
 
 conf = config("TASK_PARAMS")
-
+print(conf)
+print(json.loads(conf))
 
 def f(data):
-    return json.loads(run(data))
+    return json.dumps(run(data))
 
 
 with open("/file.txt", "w") as writer:
-    writer.write(f(json.dumps(conf)))
+    writer.write(f(json.loads(conf)))
 

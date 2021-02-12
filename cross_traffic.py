@@ -62,10 +62,16 @@ def run(data):
     _dataframe = np.hstack((np.array(_product), output))
 
     table = pd.DataFrame(_dataframe, columns=columns)
-    return table.to_json('train_sample.json', orient='records')
+    table.to_json('train_sample.json', orient='records')
+    with open('train_sample.json') as json_file:
+        output_json = json.load(json_file)
+
+    return output_json
 
 
 if __name__ == "__main__":
     start_time = time.time()
-    run('data.json')
+    with open('data.json') as json_file:
+        data = json.load(json_file)
+    run(data)
     print('=== Time is {} seconds ==='.format(time.time() - start_time))
