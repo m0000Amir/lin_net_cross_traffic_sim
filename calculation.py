@@ -5,8 +5,7 @@ import json
 from cross_traffic import run
 
 conf = config("TASK_PARAMS")
-print(conf)
-print(json.loads(conf))
+
 
 def f(data):
     return json.dumps(run(data))

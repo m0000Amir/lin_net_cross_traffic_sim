@@ -39,6 +39,6 @@ def get_arrival_packet_receivers(params: dict) -> np.ndarray:
         receivers = np.ones(params['num_generated_packets']) * (
                 params['num_stations'] - 1)
         return receivers.astype(int)
-    else:
+    elif params['mode'] == 'UPLOADDOWNLOAD':
         return np.random.choice(params['num_stations'],
                                 params['num_generated_packets'])

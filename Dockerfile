@@ -10,8 +10,6 @@ COPY data.json .
 COPY input.json .
 COPY prepare_inputs.py .
 COPY calculation.py .
-
-
 RUN pip install -r requirements.txt --no-cache-dir
 
 CMD [ "python", "./calculation.py" ]
