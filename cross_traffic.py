@@ -97,7 +97,7 @@ def run(data: dict) -> dict:
 if __name__ == "__main__":
     # prepare_inputs()
     start_time = time.time()
-    with open('data.json') as json_file:
+    with open('data_test.json') as json_file:
         data = json.load(json_file)
     i = 0
     output_solution = [0]*len(data)
