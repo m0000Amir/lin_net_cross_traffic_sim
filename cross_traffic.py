@@ -3,6 +3,7 @@ A tandem queueing model of a wireless network with a cross-traffic.
 """
 import time
 import json
+import csv
 
 from itertools import product
 
@@ -16,7 +17,7 @@ from sim.simulation import simulate
 from prepare_inputs import prepare_inputs
 
 
-def run(data):
+def run(data: dict) -> dict:
 
     # with open('input.json') as json_file:
     #     input_data = json.load(json_file)
@@ -41,7 +42,8 @@ def run(data):
             'num_generated_packets': data["NUM_GENERATED_PACKETS"],
             'mode': data['MODE'],
             'num_stations': data['NUM_STATIONS'],
-            'queue_capacity': data['QUEUE_CAPACITY'],
+            'queue_capacity': None if data['QUEUE_CAPACITY'] == -1
+            else data['QUEUE_CAPACITY'],
             'mean_arrival_time': data['MEAN_ARRIVAL_TIME'],
             'std_arrival_time': data['STD_ARRIVAL_TIME'],
             'bitrate': data['BITRATE'],
@@ -50,8 +52,8 @@ def run(data):
     stat = simulate(_input)
     output = {'e2e_delay': stat['e2e_delay'][-1]}
 
-    with open('train_sample.json', 'w') as json_file:
-        json.dump({**_input, **output}, json_file)
+    # with open('train_sample.json', 'w') as json_file:
+    #     json.dump({**_input, **output}, json_file)
 
     return {**_input, **output}
     # output = np.zeros([len(data), 1])
@@ -98,12 +100,16 @@ if __name__ == "__main__":
     with open('data.json') as json_file:
         data = json.load(json_file)
     i = 0
+    output_solution = [0]*len(data)
     bar = progressbar.ProgressBar(maxval=len(data)).start()
-    bar.update(i)
-    # for j in data:
-    #     run(j)
-    #     i += 1
-    #     bar.update(i)
-    # bar.finish()
-    run(data[-1])
+    for j in data:
+        solution = run(j)
+        output_solution[i] = solution
+        i += 1
+        bar.update(i)
+
+    bar.finish()
+    with open('train_sample.json', 'w') as json_file:
+        json.dump(output_solution, json_file)
+    # run(data[-1])
     print('=== Time is {} seconds ==='.format(time.time() - start_time))

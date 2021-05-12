@@ -7,6 +7,7 @@ Distributions are selected from the following:
 where cv is Coefficient of variation.
 """
 import numpy as np
+import math
 
 
 class Exponential:
@@ -73,7 +74,7 @@ class HyperExponential:
 
 def get_random_eval(average: float, std: float, size: int) -> np.ndarray:
     cv = std / average
-    if cv == 1:
+    if (cv == 1) or (math.isclose(std, average, rel_tol=0.1)):
         return Exponential().eval(average, size)
     elif cv <= 1:
         return Erlang().eval(average, std, size)

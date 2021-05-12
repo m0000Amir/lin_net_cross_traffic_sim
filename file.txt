@@ -1,0 +1,1 @@
+{"sta_where_packets_arrive": -1, "simulation_type": true, "num_generated_packets": 1000, "mode": "UPLOAD", "num_stations": 2, "queue_capacity": 6, "mean_arrival_time": 5, "std_arrival_time": 5, "bitrate": 50, "mean_packet_size": 40, "std_mean_packet_size": 40, "e2e_delay": 0.2172484984516348}
