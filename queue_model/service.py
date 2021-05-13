@@ -15,8 +15,8 @@ def get_service_times(params: dict) -> np.ndarray:
     -------
         Vector of serviced packet sizes
     """
-    average = params['mean_arrival_time']
-    std = params['std_arrival_time']
+    average = params['mean_packet_size'] / params['bitrate']
+    std = params['mean_packet_size'] / params['bitrate']
     if params['sta_where_packets_arrive'] == -1:
         treads = params['num_stations']
     else:

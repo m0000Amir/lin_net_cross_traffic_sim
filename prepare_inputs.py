@@ -8,7 +8,7 @@ import numpy as np
 def prepare_inputs(sample_num: int) -> None:
     with open('input.json') as json_file:
         data = json.load(json_file)
-    sample_num = 20000
+    # sample_num = 20000
     swpa = np.zeros(sample_num)
     simtype = [None] * sample_num
     numgenp = np.zeros(sample_num)

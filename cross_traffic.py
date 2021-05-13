@@ -19,7 +19,7 @@ from prepare_inputs import prepare_inputs
 
 def run(data: dict) -> dict:
 
-    # with open('input.json') as json_file:
+    # with open('train.json') as json_file:
     #     input_data = json.load(json_file)
     #
     # _product = list(product([input_data["SIMULATION_TYPE"]],
